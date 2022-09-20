@@ -1,6 +1,9 @@
 package com.domas;
 
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.Scanner;
 
 public class Main {
@@ -8,8 +11,17 @@ public class Main {
     private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
+
         Hotel hotel = new Hotel();
         hotel.createRooms(5);
+
+        try {
+            FileInputStream fis = new FileInputStream("hotel.ser");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            hotel = (Hotel) ois.readObject();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         System.out.println("Welcome to Paradise Hotel!");
 
@@ -52,6 +64,14 @@ public class Main {
                     break;
                 case 5:
                     System.out.println("Goodbye, have a nice day!");
+                    try {
+                        FileOutputStream fs = new FileOutputStream("hotel.ser");
+                        ObjectOutputStream os = new ObjectOutputStream(fs);
+                        os.writeObject(hotel);
+                        os.close();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                     quit = true;
                     break;
             }

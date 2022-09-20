@@ -1,10 +1,11 @@
 package com.domas;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class Room {
+public class Room implements Serializable {
     private int roomNo;
     private List<Guest> guests = new ArrayList<>();
     private List<Guest> roomHistory = new ArrayList<>();
@@ -25,7 +26,7 @@ public class Room {
 
     public boolean emptyRoom(Guest guest) {
         Iterator<Guest> i = guests.iterator();
-        while(i.hasNext()) {
+        while (i.hasNext()) {
             Guest g = i.next();
             if (g.getFirstName().toLowerCase().equals(guest.getFirstName().toLowerCase()) && g.getLastName().toLowerCase().equals(guest.getLastName().toLowerCase())) {
                 guests.remove(g);
@@ -40,7 +41,7 @@ public class Room {
         System.out.println("Room was occupied by:");
         if (!roomHistory.isEmpty()) {
             for (int i = 0; i < roomHistory.size(); i++) {
-                System.out.println((i+1) + " " + roomHistory.get(i).toString());
+                System.out.println((i + 1) + " " + roomHistory.get(i).toString());
             }
         } else {
             System.out.println("Room hasn't had any guests yet");

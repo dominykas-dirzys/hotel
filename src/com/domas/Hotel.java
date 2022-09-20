@@ -1,9 +1,10 @@
 package com.domas;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Hotel {
+public class Hotel implements Serializable {
     private List<Room> rooms = new ArrayList<>();
 
     public void createRooms(int numberOfRooms) {
@@ -28,10 +29,6 @@ public class Hotel {
         return false;
     }
 
-    public List<Room> getRooms() {
-        return rooms;
-    }
-
     public boolean checkOut(Guest guest) {
         for (Room room : rooms) {
             if (room.emptyRoom(guest)) {
@@ -53,10 +50,10 @@ public class Hotel {
     }
 
     public void showRoomHistory(int roomNo) {
-        rooms.get(roomNo-1).showRoomHistory();
+        rooms.get(roomNo - 1).showRoomHistory();
     }
 
     public void showRoomStatus(int roomNo) {
-        rooms.get(roomNo-1).showRoomStatus();
+        rooms.get(roomNo - 1).showRoomStatus();
     }
 }
