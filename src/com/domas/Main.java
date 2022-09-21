@@ -20,7 +20,6 @@ public class Main {
             ObjectInputStream ois = new ObjectInputStream(fis);
             hotel = (Hotel) ois.readObject();
         } catch (Exception e) {
-            e.printStackTrace();
         }
 
         System.out.println("Welcome to Paradise Hotel!");
@@ -70,7 +69,6 @@ public class Main {
                         os.writeObject(hotel);
                         os.close();
                     } catch (Exception e) {
-                        e.printStackTrace();
                     }
                     quit = true;
                     break;
